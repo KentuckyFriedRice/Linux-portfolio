@@ -6,6 +6,6 @@ This is a compilation of shell scripts and ansible playbooks <sub>(coming soon)<
 ##### **[For Web Development]** - https://github.com/KentuckyFriedRice/vocabQuiz
 
 
-##### Based in Japan and looking for opportunities in IT.
+##### Based in Yamanashi, Japan and looking for opportunities in IT.
 ##### RHCSA certified 
 ##### Interested in Infrastructure IT work
