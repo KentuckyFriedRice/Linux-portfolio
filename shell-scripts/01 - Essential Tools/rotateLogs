@@ -1,0 +1,28 @@
+#!/bin/bash
+
+makeBackup() {
+	baseDir=$(pwd)
+	oriDir=$(readlink -f $1)
+	fileName="${oriDir##*/}"
+	oriDir="${oriDir%/*}"
+	cd $oriDir
+	cp "$fileName" "$fileName.1"
+        tar cvzf "$fileName.1.tar.gz" "$fileName.1"
+	rm "$fileName.1"
+	cd $baseDir	
+}
+
+inDir="."
+
+if [ -d $1 ]; then
+	inDir="$1"
+else
+	echo "Usage: roateLogs [directory - default: .]"
+	exit 1 
+fi 
+
+fileList=$(find $inDir -type f -name "*.log")
+
+for file in $fileList;do
+	makeBackup $file
+done
