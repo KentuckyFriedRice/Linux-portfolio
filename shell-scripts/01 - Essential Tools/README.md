@@ -2,4 +2,4 @@ Scripts demonstrating file management (cp, mv, find), text processing (grep, awk
 
 rotateLogs - I made this one to demonstrate my ability and understanding to manually rotate logs if I needed to. (find, cp, mv, tar, gzip)
 
-
+<img src="script1.png"/>
