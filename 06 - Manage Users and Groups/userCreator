@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#Check no options were added
+if [ $# -le 0 ];then
+	echo "Usage: userCreator [fileName]"
+	exit 1
+fi
+
+#fileName is the file name and file is the contents
+fileName=${!#}
+file=$(cat $fileName)
+
+#checks that the file exits
+if [ ! -e $fileName ];then	
+	echo "File not found"
+	exit 1
+fi
+
+for line in $file; do
+	echo -e "$line\n"
+done
