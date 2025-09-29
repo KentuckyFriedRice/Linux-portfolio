@@ -22,7 +22,7 @@ makeBackup() {
 			mv "$fileName.$((12-i)).tar.gz" "$fileName.$((12-i+1)).tar.gz"
 			if [ $latest -eq 1 ];then
 				latest=0
-				echo "Oldest: $fileName.$((12-i)).tar.gz"
+				echo "Oldest: $fileName.$((12-i+1)).tar.gz"
 			fi	
 			if [ $i -eq 1 ];then
 				echo "$fileName.12.tar.gz has been replaced"
