@@ -1,0 +1,62 @@
+#!/bin/bash
+
+#function that makes the backup 
+makeBackup() {
+	#Lets us return back to where we started so there aren't any problems from moving around
+	baseDir=$(pwd)
+
+	#gets the absolute directory for the file so it doesn't matter where you run the script
+	oriDir=$(readlink -f $1)
+	#strips just the file name
+	fileName="${oriDir##*/}"
+	#strips away the file name and saves the absolute directory of the file
+	oriDir="${oriDir%/*}"
+	#moves into that directory
+	cd $oriDir
+
+	#this loop moves the backups up one, making room for the new backup and pushing out the 12th if it exists; logic is written to make it easier to understand what is happening
+
+	latest=1
+	for i in {1..11};do
+		if [ -e "$fileName.$((12-i)).tar.gz" ];then
+			mv "$fileName.$((12-i)).tar.gz" "$fileName.$((12-i+1)).tar.gz"
+			if [ $latest -eq 1 ];then
+				latest=0
+				echo "Oldest: $fileName.$((12-i+1)).tar.gz"
+			fi	
+			if [ $i -eq 1 ];then
+				echo "$fileName.12.tar.gz has been replaced"
+			fi
+		fi
+	done
+
+	#makes the backup
+	cp "$fileName" "$fileName.1"
+	#compresses backup and saves it in the same directory
+        tar czf "$fileName.1.tar.gz" "$fileName.1"
+	#removes the uncompressed backup
+	rm "$fileName.1"
+
+	#returns us to where we started
+	cd $baseDir	
+}
+
+#sets default directory as the current one
+inDir="."
+
+#if diretory exists, then set it as the first option
+if [ -d $1 ]; then
+	inDir="$1"
+else
+	#error checking; ends program if input isn't right
+	echo "Usage: roateLogs [directory - default: .]"
+	exit 1 
+fi 
+
+#lists all files in selected directory in fileList directory
+fileList=$(find $inDir -type f -name "*.log")
+
+#sends all filenames to the makeBackup function (listed above)
+for file in $fileList;do
+	makeBackup $file
+done
