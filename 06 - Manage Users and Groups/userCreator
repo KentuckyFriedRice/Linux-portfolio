@@ -8,7 +8,25 @@ fi
 
 #fileName is the file name and file is the contents
 fileName=${!#}
-file=$(cat $fileName)
+#file=(
+for line in $(awk -F'\n' 'NR>1 {print}' $fileName);do
+		
+	name=$(echo $line | awk -F',' '{print $1}')
+	password=$(echo $line | awk -F',' '{print $2}')
+	homeDir=$(echo $line | awk -F',' '{print $3}')
+	defShell=$(echo $line | awk -F',' '{print $4}')
+	groups=${line##*,\"}
+	groups=${groups%\"}
+
+	for group in $(echo $groups | awk -F',' '{for (i=1;i<=NF;i++) print $i}');do	
+		groupadd $group 2> /dev/null
+	done
+	
+	useradd -G $groups -s $defShell -U -m -d $homeDir $name
+	echo $password | passwd --stdin $name
+
+done
+
 
 #checks that the file exits
 if [ ! -e $fileName ];then	
@@ -16,6 +34,11 @@ if [ ! -e $fileName ];then
 	exit 1
 fi
 
-for line in $file; do
-	echo -e "$line\n"
-done
+
+
+#awk -F '/username/ {$1}' $file
+
+#for line in $file; do
+#	echo -e "$line\n"
+#	awk '{print $1}' $line
+#done
