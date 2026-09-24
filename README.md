@@ -6,6 +6,6 @@ This is an archive to demonstrate some of my system administration abilities.
 ##### **[For Web Development]** - https://github.com/KentuckyFriedRice/vocabQuiz
 
 
-##### Based in Yamanashi, Japan and looking for opportunities in IT.
+##### Based in Cincinnati, OH and looking for opportunities in IT.
 ##### RHCSA certified 
 ##### Interested in Infrastructure IT work
