@@ -1,6 +1,6 @@
 # Linux-portfolio
 My name is Matthew Rice.
-This is a compilation of shell scripts and ansible playbooks <sub>(coming soon)</sub> I made to demonstrate my ability.
+This is an archive to demonstrate some of my system administration abilities.
 
 ##### **[For Bash Scripting]** - https://github.com/KentuckyFriedRice/ePub2CBZ
 ##### **[For Web Development]** - https://github.com/KentuckyFriedRice/vocabQuiz
