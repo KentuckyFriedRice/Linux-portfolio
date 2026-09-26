@@ -1,1 +1,14 @@
-Scripts to create partitions, LVM volumes, mount points; show before/after states, lsblk, df -h outputs
+<img src="1-show_drives_lsblk.png">
+<img src="2-Newest.png">
+<img src="3-newest_lsblk.png">
+<img src="4-UUID_write_into_fstab_daemonreload_mount_lsblk.png">
+<img src="5-fstab.png">
+<img src="6-pvcreate.png">
+<img src="7-pvdisplay.png">
+<img src="8-vgcreate_vgdisplay.png">
+<img src="9-lvcreate.png">
+<img src="10-lvdisplay.png">
+<img src="11-lsblk.png">
+<img src="12-mkfs_on_lv.png">
+<img src="13-fstab.png">
+<img src="14-lsblk.png">
